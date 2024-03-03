@@ -28,7 +28,7 @@ export default function ContentBody({ page }: { page: Content.BlogPostDocument |
         <Heading as="h1" className="mb-5">
           {page.data.title}
         </Heading>
-        <div className="flex gap-4 text-yellow-400 text-xl font-bold">
+        <div className="flex gap-4 text-yellow-400 md:text-2xl lg:text-xl sm:text-1xl font-bold">
           {page.tags.map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
