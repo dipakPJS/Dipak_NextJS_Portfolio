@@ -2,11 +2,10 @@
 
 import clsx from "clsx";
 import React, { useState } from "react";
-import { Content, KeyTextField, asLink } from "@prismicio/client";
+import { Content, asLink } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import Link from "next/link";
 import { MdMenu, MdClose } from "react-icons/md";
-// import Button from "./Button"; 
 import { usePathname } from "next/navigation";
 
 export default function NavBar({
@@ -19,41 +18,36 @@ export default function NavBar({
 
   return (
     <nav aria-label="Main navigation">
-      <ul className="nav-style flex flex-col justify-between rounded-b-lg bg-[#fff] px-10 py-6 md:m-4 md:flex-row md:items-center md:rounded-[50px]">
-        <div className="flex items-center justify-between">
+      <ul className="nav-style flex flex-col justify-between rounded-b-lg bg-[#fff] px-6 py-4 md:m-4 md:flex-row md:items-center md:rounded-[50px]">
+        <div className="flex items-center justify-between w-full">
           <NameLogo />
+          {/* Mobile menu button */}
           <button
             aria-expanded={open}
             aria-label="Open menu"
             className="block p-2 text-2xl text-slate-800 md:hidden"
-            onClick={() => setOpen(true)}
+            onClick={() => setOpen(!open)}
           >
-            <MdMenu />
+            {open ? <MdClose /> : <MdMenu />}
           </button>
         </div>
+        
+        {/* Mobile menu */}
         <div
           className={clsx(
-            "fixed bottom-0 left-0 right-0 top-0 z-50 flex flex-col items-end gap-4 bg-slate-50 pr-4 pt-14 transition-transform duration-300 ease-in-out md:hidden",
-            open ? "translate-x-0" : "translate-x-[100%]",
+            "fixed inset-0 z-40 flex flex-col items-start gap-4 bg-slate-50 px-6 py-14 transition-transform duration-300 ease-in-out md:hidden",
+            open ? "translate-x-0" : "translate-x-full"
           )}
         >
-          <button
-            aria-label="Close menu"
-            aria-expanded={open}
-            className="fixed right-4 top-3 block p-2 text-2xl text-slate-800 md:hidden "
-            onClick={() => setOpen(false)}
-          >
-            <MdClose />
-          </button>
           {settings.data.nav_item.map(({ link, label }, index) => (
             <React.Fragment key={label}>
-              <li className="first:mt-8">
+              <li className="w-full">
                 <PrismicNextLink
                   className={clsx(
-                    "group relative block overflow-hidden rounded-[50px] px-3 text-3xl font-bold text-slate-900 ",
+                    "group relative block overflow-hidden rounded-[50px] px-4 py-2 text-2xl font-bold text-slate-900"
                   )}
                   field={link}
-                  onClick={() => setOpen(false)}
+                  onClick={() => setOpen(false)} // Close menu on item click
                   aria-current={
                     pathname.includes(asLink(link) as string)
                       ? "page"
@@ -62,13 +56,13 @@ export default function NavBar({
                 >
                   <span
                     className={clsx(
-                      "absolute inset-0 z-0 h-full translate-y-12 rounded-[55px] bg-[#0037ff] transition-transform duration-300 ease-in-out group-hover:translate-y-0",
+                      "absolute inset-0 z-0 h-full translate-y-full rounded-[50px] bg-[#0037ff] transition-transform duration-300 ease-in-out group-hover:translate-y-0",
                       pathname.includes(asLink(link) as string)
-                        ? "translate-y-6"
-                        : "translate-y-18",
+                        ? "translate-y-1"
+                        : "translate-y-full"
                     )}
                   />
-                  <span className="relative">{label}</span>
+                  <span className="relative z-10">{label}</span>
                 </PrismicNextLink>
               </li>
               {index < settings.data.nav_item.length - 1 && (
@@ -81,10 +75,9 @@ export default function NavBar({
               )}
             </React.Fragment>
           ))}
-          <li>
-           
-          </li>
         </div>
+
+        {/* Desktop menu */}
         <DesktopMenu settings={settings} pathname={pathname} />
       </ul>
     </nav>
@@ -98,7 +91,7 @@ function NameLogo() {
       aria-label="Home page"
       className="text-xl font-extrabold tracking-tighter text-[#000102]"
     >
-     <img src="/dpak.png" className="logo-image" />
+      <img src="/dpak.png" className="logo-image" alt="Logo" />
     </Link>
   );
 }
@@ -111,13 +104,13 @@ function DesktopMenu({
   pathname: string;
 }) {
   return (
-    <div className="relative z-50 hidden flex-row items-center gap-1 bg-transparent py-0 md:flex">
+    <div className="relative hidden flex-row items-center gap-1 bg-transparent py-0 md:flex">
       {settings.data.nav_item.map(({ link, label }, index) => (
         <React.Fragment key={label}>
           <li>
             <PrismicNextLink
               className={clsx(
-                "group relative block overflow-hidden rounded-[50px] px-3 py-1 text-base font-bold text-slate-900",
+                "group relative block overflow-hidden rounded-[50px] px-3 py-1 text-base font-bold text-slate-900"
               )}
               field={link}
               aria-current={
@@ -126,13 +119,13 @@ function DesktopMenu({
             >
               <span
                 className={clsx(
-                  "absolute inset-0 z-0 h-full rounded-[50px] bg-[#0037ff] transition-transform  duration-300 ease-in-out group-hover:translate-y-0",
+                  "absolute inset-0 z-0 h-full rounded-[50px] bg-[#0037ff] transition-transform duration-300 ease-in-out group-hover:translate-y-0",
                   pathname.includes(asLink(link) as string)
-                    ? "translate-y-6"
-                    : "translate-y-8",
+                    ? "translate-y-1"
+                    : "translate-y-full"
                 )}
               />
-              <span className="relative">{label}</span>
+              <span className="relative z-10">{label}</span>
             </PrismicNextLink>
           </li>
           {index < settings.data.nav_item.length - 1 && (
@@ -145,9 +138,6 @@ function DesktopMenu({
           )}
         </React.Fragment>
       ))}
-      <li>
-     
-      </li>
     </div>
   );
 }
