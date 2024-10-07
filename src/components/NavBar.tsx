@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import clsx from "clsx";
 import React, { useState } from "react";
@@ -18,7 +18,7 @@ export default function NavBar({
   const pathname = usePathname();
 
   return (
-      <nav aria-label="Main navigation">
+    <nav aria-label="Main navigation">
       <ul className="nav-style flex flex-col justify-between rounded-b-lg bg-[#fff] px-10 py-6 md:m-4 md:flex-row md:items-center md:rounded-[50px]">
         <div className="flex items-center justify-between">
           <NameLogo />
@@ -26,23 +26,31 @@ export default function NavBar({
             aria-expanded={open}
             aria-label="Open menu"
             className="block p-2 text-2xl text-slate-800 md:hidden"
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpen(true)}
           >
-            {open ? <MdClose /> : <MdMenu />}
+            <MdMenu />
           </button>
         </div>
         <div
           className={clsx(
-            "fixed inset-0 z-50 flex flex-col items-end gap-4 bg-slate-50 pr-4 pt-14 transition-transform duration-300 ease-in-out md:hidden",
-            open ? "translate-x-0" : "translate-x-[100%]"
+            "fixed bottom-0 left-0 right-0 top-0 z-50 flex flex-col items-end gap-4 bg-slate-50 pr-4 pt-14 transition-transform duration-300 ease-in-out md:hidden",
+            open ? "translate-x-0" : "translate-x-[100%]",
           )}
         >
+          <button
+            aria-label="Close menu"
+            aria-expanded={open}
+            className="fixed right-4 top-3 block p-2 text-2xl text-slate-800 md:hidden "
+            onClick={() => setOpen(false)}
+          >
+            <MdClose />
+          </button>
           {settings.data.nav_item.map(({ link, label }, index) => (
             <React.Fragment key={label}>
               <li className="first:mt-8">
                 <PrismicNextLink
                   className={clsx(
-                    "group relative block overflow-hidden rounded-[50px] px-3 text-3xl font-bold text-slate-900 "
+                    "group relative block overflow-hidden rounded-[50px] px-3 text-3xl font-bold text-slate-900 ",
                   )}
                   field={link}
                   onClick={() => setOpen(false)}
@@ -57,7 +65,7 @@ export default function NavBar({
                       "absolute inset-0 z-0 h-full translate-y-12 rounded-[55px] bg-[#0037ff] transition-transform duration-300 ease-in-out group-hover:translate-y-0",
                       pathname.includes(asLink(link) as string)
                         ? "translate-y-6"
-                        : "translate-y-18"
+                        : "translate-y-18",
                     )}
                   />
                   <span className="relative">{label}</span>
@@ -73,6 +81,9 @@ export default function NavBar({
               )}
             </React.Fragment>
           ))}
+          <li>
+           
+          </li>
         </div>
         <DesktopMenu settings={settings} pathname={pathname} />
       </ul>
