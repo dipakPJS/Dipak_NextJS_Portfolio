@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { PrismicPreview } from "@prismicio/next";
 import { createClient, repositoryName } from "@/prismicio";
  
+import {ReactLenis} from "@/utils/lenis";
  
 const urbanist = Urbanist({ subsets: ["latin"] });
 
@@ -30,11 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-[#1e272e]">
      
+{/* adding lenis */}
+<ReactLenis root>
 
     
       <body
         className={clsx(urbanist.className, "relative min-h-screen  text-white ")}
-      >
+        >
         <Header />
         {children}
         <Footer />
@@ -42,6 +45,7 @@ export default function RootLayout({
         <div className="pointer-events-none absolute inset-0 -z-40 h-full bg-[url('/noisetexture.jpg')] opacity-20 mix-blend-soft-light"></div>
       </body>
      
+        </ReactLenis>
     
       <PrismicPreview repositoryName={repositoryName} />
     </html>
