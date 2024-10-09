@@ -19,7 +19,7 @@ export default function NavBar({
 
   return (
     <nav aria-label="Main navigation">
-      <ul className="nav-style flex flex-col justify-between rounded-b-lg  px-10 py-6 md:m-4 md:flex-row md:items-center md:rounded-[50px]">
+      <ul className="nav-style flex flex-col justify-between rounded-b-lg bg-[#fff] px-10 py-4 md:m-4 md:flex-row md:items-center md:rounded-[50px]">
         <div className="flex items-center justify-between">
           <NameLogo />
           <button
@@ -98,7 +98,7 @@ function NameLogo() {
       aria-label="Home page"
       className="text-xl font-extrabold tracking-tighter text-[#000102]"
     >
-     <img src="/dpak.png" alt="logo image" className="logo-image" />
+     <img src="/dpak.png" alt="logo-image" className="logo-image" />
     </Link>
   );
 }
@@ -117,7 +117,7 @@ function DesktopMenu({
           <li>
             <PrismicNextLink
               className={clsx(
-                "group relative block overflow-hidden rounded-[50px] px-3 py-1 text-base font-bold text-black",
+                "group relative block overflow-hidden rounded-[50px] px-3 py-1 text-base font-bold text-slate-900",
               )}
               field={link}
               aria-current={
@@ -126,7 +126,7 @@ function DesktopMenu({
             >
               <span
                 className={clsx(
-                  "absolute inset-0 z-0 h-full rounded-[50px] bg-[#0037ff]  transition-transform  duration-300 ease-in-out group-hover:translate-y-0",
+                  "absolute inset-0 z-0 h-full rounded-[50px] bg-[#0037ff] transition-transform  duration-300 ease-in-out group-hover:translate-y-0",
                   pathname.includes(asLink(link) as string)
                     ? "translate-y-6"
                     : "translate-y-8",

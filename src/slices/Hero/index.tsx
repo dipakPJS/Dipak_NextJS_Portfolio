@@ -75,7 +75,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       data-slice-variation={slice.variation}
       ref={component}
     >
-      <div className="grid min-h-[20vh]  grid-cols-1 items-center md:grid-cols-2">
+      <div className="grid min-h-[20vh] grid-cols-1 items-center md:grid-cols-2">
         <Shapes />
         <div className="col-start-1 md:row-start-1 " data-speed=".2">
           <h1
