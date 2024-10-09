@@ -19,7 +19,7 @@ export default function NavBar({
 
   return (
     <nav aria-label="Main navigation">
-      <ul className="nav-style flex flex-col justify-between rounded-b-lg bg-[#fff] px-10 py-6 md:m-4 md:flex-row md:items-center md:rounded-[50px]">
+      <ul className="nav-style flex flex-col justify-between rounded-b-lg bg-[#fff] px-10 py-4 md:m-4 md:flex-row md:items-center md:rounded-[50px]">
         <div className="flex items-center justify-between">
           <NameLogo />
           <button
