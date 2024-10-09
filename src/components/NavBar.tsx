@@ -98,7 +98,7 @@ function NameLogo() {
       aria-label="Home page"
       className="text-xl font-extrabold tracking-tighter text-[#000102]"
     >
-     <img src="/dpak.png" className="logo-image" />
+     <img src="/dpak.png" alt="logo image" className="logo-image" />
     </Link>
   );
 }
