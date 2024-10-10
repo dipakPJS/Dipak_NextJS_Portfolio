@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import "./globals.css";
@@ -8,6 +9,7 @@ import { PrismicPreview } from "@prismicio/next";
 import { createClient, repositoryName } from "@/prismicio";
  
 import {ReactLenis} from "@/utils/lenis";
+ 
  
 const urbanist = Urbanist({ subsets: ["latin"] });
 
@@ -38,6 +40,7 @@ export default function RootLayout({
       <body
         className={clsx(urbanist.className, "relative min-h-screen  text-white ")}
         >
+  
         <Header />
         {children}
         <Footer />
