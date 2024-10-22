@@ -21,7 +21,7 @@ export default function Button({
     <PrismicNextLink
       field={linkField}
       className={clsx(
-        "group relative text-slate-900 flex w-fit items-center justify-center overflow-hidden rounded-[50px]  border-2 border-slate-900 bg-slate-50  px-8 py-2 font-bold transition-transform ease-out  hover:scale-105",
+        "group relative text-slate-900 duration-700 hover:text-white flex w-fit items-center justify-center overflow-hidden rounded-[50px]  border-2 border-slate-900 bg-slate-50  px-8 py-2 font-bold transition-transform ease-in-out  hover:scale-105",
         className,
       )}
     >
