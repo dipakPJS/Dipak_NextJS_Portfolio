@@ -117,7 +117,7 @@ function DesktopMenu({
           <li>
             <PrismicNextLink
               className={clsx(
-                "group relative block overflow-hidden rounded-[50px] px-3 py-1 text-base font-bold text-slate-900",
+                "group relative block overflow-hidden rounded-[50px] px-3 py-1 text-base font-bold duration-300 ease-in-out hover:text-white text-slate-900",
               )}
               field={link}
               aria-current={
